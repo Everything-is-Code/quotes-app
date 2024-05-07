@@ -1,0 +1,22 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: quotes-backend
+  namespace: quotes
+  labels:
+    app.kubernetes.io/component: route
+    app.kubernetes.io/environment: development
+    app.kubernetes.io/instance: quotes-aws-dev
+    app.kubernetes.io/managed-by: argocd
+    app.kubernetes.io/name: quotes-route
+    app.kubernetes.io/part-of: quotes-demo
+spec:
+  to:
+    kind: Service
+    name: quotes-backend
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+    destinationCACertificate: ''
+  port:
+    targetPort: 8080

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "1"
+      app.openshift.io/vcs-uri: "git@github.com:Everything-is-Code/trusted-application-pipeline.git"
+      app.openshift.io/vcs-ref: "09a3febb0700b89987ae2e3afcc374df9884b9f6"
+      console.alpha.openshift.io/overview-app-route: ‘true’
+  labels:
+    app: quotes-backend
+    app.kubernetes.io/part-of: quotes-demo
+    app.kubernetes.io/name: quotes-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/managed-by: argocd
+    app.kubernetes.io/instance: quotes-aws-dev
+    app.kubernetes.io/environment: development
+    app.kubernetes.io/version: "0.0.1"
+    app.openshift.io/runtime: quarkus
+    app.openshift.io/runtime-version: "3.9.4"
+  namespace: quotes
+  name: quotes-backend
+spec:
+  selector:
+    matchLabels:
+      app: quotes-backend
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: quotes-backend
+    spec:
+      containers:
+        - name: container
+          image: >-
+            quay.io/ilago/quote-app:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env: []
+      imagePullSecrets: []
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  paused: false

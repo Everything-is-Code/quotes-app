@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "2"
+  labels:
+    app.kubernetes.io/part-of: quotes-demo
+    app.kubernetes.io/name: quotes-service
+    app.kubernetes.io/component: service
+    app.kubernetes.io/managed-by: argocd
+    app.kubernetes.io/instance: quotes-aws-dev
+    app.kubernetes.io/environment: development
+  name: quotes-backend
+  namespace: quotes
+spec:
+  selector:
+    app: quotes-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
