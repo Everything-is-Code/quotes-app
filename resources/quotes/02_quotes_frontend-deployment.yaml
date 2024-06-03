@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: quotes-frontend
-          image: 'quay.io/ilago/quote-frontend:main'
+          image: 'quay.io/ilago/quote-frontend:latest'
           env:
             - name: VITE_BACKEND_URL
               valueFrom:
