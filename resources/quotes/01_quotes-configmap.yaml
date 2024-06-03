@@ -6,7 +6,7 @@ metadata:
   name: environment-variables
   namespace: quotes
 data:
-  .env: >-
-    VITE_BACKEND_URL="http://quotes-backend.quotes.svc.cluster.local/quote"
+  VITE_BACKEND_URL: >-
+    http://quotes-backend.quotes.svc.cluster.local/quote
 binaryData: {}
 immutable: false
