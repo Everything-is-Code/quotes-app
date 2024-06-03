@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "1"
-      app.openshift.io/vcs-uri: "git@github.com:Everything-is-Code/trusted-application-pipeline.git"
-      app.openshift.io/vcs-ref: "09a3febb0700b89987ae2e3afcc374df9884b9f6"
       console.alpha.openshift.io/overview-app-route: ‘true’
   labels:
     app: quotes-backend
