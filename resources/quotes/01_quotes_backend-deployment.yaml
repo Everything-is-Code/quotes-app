@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "1"
+      deployment.kubernetes.io/revision: '2'
       console.alpha.openshift.io/overview-app-route: ‘true’
   labels:
     app: quotes-backend
@@ -18,27 +19,35 @@ metadata:
   namespace: quotes
   name: quotes-backend
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: quotes-backend
-  replicas: 3
   template:
     metadata:
       labels:
         app: quotes-backend
     spec:
       containers:
-        - name: container
+        - name: quotes-backend
           image: >-
             quay.io/ilago/quote-backend:main
           ports:
             - containerPort: 8080
               protocol: TCP
-          env: []
-      imagePullSecrets: []
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 25%
       maxUnavailable: 25%
-  paused: false
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
