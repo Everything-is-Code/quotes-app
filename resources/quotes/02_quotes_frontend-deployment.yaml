@@ -21,14 +21,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      deployment: quotes-frontend
+        app: quotes-frontend
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: quotes-frontend
-      annotations:
-        openshift.io/generated-by: OpenShiftNewApp
     spec:
       containers:
         - name: quotes-frontend
