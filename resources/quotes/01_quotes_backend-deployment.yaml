@@ -32,7 +32,7 @@ spec:
       containers:
         - name: container
           image: >-
-            quay.io/ilago/quote-app:latest
+            quay.io/ilago/quote-backend:main
           ports:
             - containerPort: 8080
               protocol: TCP
