@@ -26,7 +26,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        deployment: quotes-frontend
+        app: quotes-frontend
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
     spec:
