@@ -1,0 +1,10 @@
+---
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "0"
+  labels:
+    kubernetes.io/metadata.name: openshift-serverless
+    openshift.io/cluster-monitoring: "true"
+  name: openshift-serverless

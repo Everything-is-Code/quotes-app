@@ -1,0 +1,14 @@
+apiVersion: operator.knative.dev/v1beta1
+kind: KnativeServing
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "2"
+  name: knative-serving
+  namespace: knative-serving
+spec:
+  controller-custom-certs:
+    name: ''
+    type: ''
+  deployments:
+    - name: quotes-backend
+  registry: {}

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "1"
+  name: environment-variables
+  namespace: quotes
+data:
+  VITE_BACKEND_URL: "http://quotes-backend.quotes.svc.cluster.local/quote"
+binaryData: {}
+immutable: false
