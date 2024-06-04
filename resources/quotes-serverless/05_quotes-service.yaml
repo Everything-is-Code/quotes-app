@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/instance: quotes-aws-dev
     app.kubernetes.io/environment: development
   name: quotes-backend
-  namespace: quotes
+  namespace: quotes-serverless
 spec:
   selector:
     app: quotes-backend
@@ -34,7 +34,7 @@ metadata:
     app.kubernetes.io/instance: quotes-aws-dev
     app.kubernetes.io/environment: development
   name: quotes-frontend
-  namespace: quotes
+  namespace: quotes-serverless
 spec:
   selector:
     app: quotes-frontend

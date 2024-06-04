@@ -5,7 +5,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
     serving.knative.dev/creator: argocd
   name: quotes-serverless-backend
-  namespace: quotes
+  namespace: quotes-serverless
 spec:
   template:
     metadata:

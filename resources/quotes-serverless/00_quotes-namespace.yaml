@@ -4,14 +4,14 @@ metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "0"
   labels:
-    app: quotes
-    app.kubernetes.io/part-of: quotes-demo
+    app: quotes-serverless
+    app.kubernetes.io/part-of: quotes-serverless
     app.kubernetes.io/name: quotes-namespace
     app.kubernetes.io/component: namespace
     app.kubernetes.io/managed-by: argocd
     app.kubernetes.io/instance: quotes-aws-dev
     app.kubernetes.io/environment: development
-  name: quotes
+  name: quotes-serverless
 spec:
   finalizers:
     - kubernetes

@@ -5,7 +5,7 @@ metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "6"
   name: quotes-backend
-  namespace: quotes
+  namespace: quotes-serverless
   labels:
     app.kubernetes.io/component: route
     app.kubernetes.io/environment: development
@@ -30,7 +30,7 @@ metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "4"
   name: quotes-frontend
-  namespace: quotes
+  namespace: quotes-serverless
   labels:
     app.kubernetes.io/component: route
     app.kubernetes.io/environment: development
