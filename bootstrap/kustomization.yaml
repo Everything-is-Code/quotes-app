@@ -3,5 +3,6 @@ kind: Kustomization
 commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 resources:
-- quotes-serverless
-- quotes
+- quotes-proj.yaml
+- quotes-app.yaml
+- quotes-serverless.yaml
