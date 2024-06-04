@@ -7,7 +7,6 @@ metadata:
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: quotes-serverless
     server: https://kubernetes.default.svc
   project: quotes
   source:
@@ -18,5 +17,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true

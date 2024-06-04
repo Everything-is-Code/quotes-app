@@ -4,8 +4,8 @@ commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 resources:
 - 00_quotes-namespace.yaml
-# - 01_quotes_backend-deployment.yaml
-# - 01_quotes-configmap.yaml
-# - 02_quotes_frontend-deployment.yaml
-# - 03_quotes-service.yaml
-# - 04_quotes-route.yaml
+- 01_quotes_backend-deployment.yaml
+- 01_quotes-configmap.yaml
+- 02_quotes_frontend-deployment.yaml
+- 03_quotes-service.yaml
+- 04_quotes-route.yaml
