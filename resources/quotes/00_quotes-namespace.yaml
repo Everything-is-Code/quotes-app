@@ -6,7 +6,7 @@ metadata:
   labels:
     app: quotes
     app.kubernetes.io/part-of: quotes-demo
-    app.kubernetes.io/name: quotes-namespace
+    app.kubernetes.io/name: quotes
     app.kubernetes.io/component: namespace
     app.kubernetes.io/managed-by: argocd
     app.kubernetes.io/instance: quotes-aws-dev
