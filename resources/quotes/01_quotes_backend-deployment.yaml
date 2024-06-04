@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "1"
-      deployment.kubernetes.io/revision: '2'
       console.alpha.openshift.io/overview-app-route: ‘true’
   labels:
     app: quotes-backend
