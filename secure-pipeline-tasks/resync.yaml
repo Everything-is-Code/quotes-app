@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: resync
+  namespace: my-quarkus-app-dev
+spec:
+  params:
+    - description: The component id
+      name: COMPONENT_ID
+      type: string
+  steps:
+    - args:
+        - oc delete pod -n $(params.COMPONENT_ID)-dev -l app.kubernetes.io/instance=$(params.COMPONENT_ID)-dev
+      command:
+        - /bin/bash
+        - '-c'
+      computeResources: {}
+      image: 'quay.io/openshift/origin-cli:latest'
+      name: resync
