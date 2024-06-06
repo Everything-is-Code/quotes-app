@@ -1,0 +1,20 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app: quotes-serverless-secure
+    app.kubernetes.io/part-of: quotes-serverless-demo
+    app.kubernetes.io/name: quotes-serverless
+    app.kubernetes.io/component: namespace
+    app.kubernetes.io/managed-by: argocd
+    app.kubernetes.io/instance: quotes-aws-dev
+    app.kubernetes.io/environment: development
+  name: quotes-serverless
+spec:
+  finalizers:
+    - kubernetes
+
+
+    
