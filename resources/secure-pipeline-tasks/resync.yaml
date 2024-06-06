@@ -1,8 +1,10 @@
 apiVersion: tekton.dev/v1
 kind: Task
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   name: resync
-  namespace: my-quarkus-app-dev
+  namespace: quotes-backend-dev
 spec:
   params:
     - description: The component id

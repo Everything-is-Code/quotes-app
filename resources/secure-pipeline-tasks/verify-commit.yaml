@@ -1,7 +1,10 @@
 apiVersion: tekton.dev/v1
 kind: Task
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   name: verify-commit
+  namespace: quotes-backend-dev
 spec:
   description: This task verifies the latest commit signature
   params:

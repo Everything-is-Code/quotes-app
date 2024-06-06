@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1
 kind: Task
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
     task.output.location: logs
     task.results.container: step-report-json
     task.results.format: application/json
@@ -10,6 +11,7 @@ metadata:
     tekton.dev/pipelines.minVersion: '0.19'
     tekton.dev/tags: 'ec, chains, signature, conftest'
   name: verify-enterprise-contract
+  namespace: quotes-backend-dev
   labels:
     app.kubernetes.io/version: '0.1'
 spec:

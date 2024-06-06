@@ -1,8 +1,10 @@
 apiVersion: tekton.dev/v1
 kind: Task
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   name: rekor-signed-provenance
-  namespace: my-quarkus-app-dev
+  namespace: quotes-backend-dev
 spec:
   params:
     - name: imageDigest

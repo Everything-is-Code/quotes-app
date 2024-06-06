@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
   name: quotes-backend-build
-  namespace: my-quarkus-app-dev
+  namespace: quotes-backend-dev
   labels:
     type: pipeline
 spec:

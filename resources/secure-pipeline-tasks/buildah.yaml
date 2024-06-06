@@ -2,10 +2,11 @@ apiVersion: tekton.dev/v1
 kind: Task
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
     tekton.dev/pipelines.minVersion: 0.12.1
     tekton.dev/tags: 'image-build, appstudio, hacbs'
   name: buildah
-  namespace: my-quarkus-app-dev
+  namespace: quotes-backend-dev
   labels:
     app.kubernetes.io/version: '0.1'
     build.appstudio.redhat.com/build_type: docker

@@ -1,7 +1,10 @@
 apiVersion: tekton.dev/v1
 kind: Task
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   name: update-deployment
+  namespace: quotes-backend-dev
 spec:
   params:
     - default: gitlab-gitlab.apps.cluster-jh82x.sandbox1737.opentlc.com

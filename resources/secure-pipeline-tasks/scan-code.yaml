@@ -1,8 +1,10 @@
 apiVersion: tekton.dev/v1
 kind: Task
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   name: scan-code
-  namespace: my-quarkus-app-dev
+  namespace: quotes-backend-dev
 spec:
   params:
     - default: 'docker.io/sonarsource/sonar-scanner-cli:4.7'

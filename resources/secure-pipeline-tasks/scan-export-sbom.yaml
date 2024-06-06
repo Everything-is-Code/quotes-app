@@ -2,12 +2,13 @@ apiVersion: tekton.dev/v1
 kind: Task
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
     task.output.location: results
     task.results.format: application/text
     task.results.key: LINK_TO_SBOM
     task.results.type: external-link
   name: scan-export-sbom
-  namespace: my-quarkus-app-dev
+  namespace: quotes-backend-dev
 spec:
   params:
     - default: 'https://cyclonedx-bom-repo-server-cyclonedx.apps.cluster-tr47n.tr47n.sandbox987.opentlc.com/'

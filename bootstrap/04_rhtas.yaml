@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: quotes
   source:
-    path: resources/rhtas-operator
+    path: resources/secure-pipeline-tasks
     repoURL: https://github.com/Everything-is-Code/quotes-app.git
     targetRevision: main
   syncPolicy:

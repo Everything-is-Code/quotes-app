@@ -2,12 +2,13 @@ apiVersion: tekton.dev/v1
 kind: Task
 metadata:
   annotations:
+    argocd.argoproj.io/sync-wave: "1"
     task.output.location: logs
     task.results.container: step-report
     task.results.format: application/json
     task.results.type: roxctl-image-check
   name: acs-image-check
-  namespace: my-quarkus-app-dev
+  namespace: quotes-backend-dev
 spec:
   description: 'Policy check an image with StackRox/RHACS This tasks allows you to check an image against build-time policies and apply enforcement to fail builds. It''s a companion to the stackrox-image-scan task, which returns full vulnerability scan results for an image.'
   params:
