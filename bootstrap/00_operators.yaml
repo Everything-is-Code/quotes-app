@@ -53,7 +53,7 @@ spec:
         directory:
           exclude: 'kustomization.yaml'      
         targetRevision: HEAD
-      - repoURL: https://github.com/Everything-is-Code/openshift-serverless.git
+      - repoURL: https://github.com/Everything-is-Code/trusted-artifact-signer.git
         path: bootstrap
         directory:
           exclude: 'kustomization.yaml'      

@@ -3,7 +3,6 @@ kind: Service
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "3"
-    serving.knative.dev/creator: argocd
   name: quotes-serverless-backend
   namespace: quotes-serverless
 spec:
