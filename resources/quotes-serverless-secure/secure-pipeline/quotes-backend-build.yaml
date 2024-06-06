@@ -124,7 +124,7 @@ spec:
         - name: rox_api_token
           value: $(params.stackrox-secret)
         - name: image
-          value:  
+          value: ''
         - name: insecure-skip-tls-verify
           value: 'true'
         - name: image_digest
