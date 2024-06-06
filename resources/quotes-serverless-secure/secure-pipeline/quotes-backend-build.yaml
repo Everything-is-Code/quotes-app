@@ -124,7 +124,7 @@ spec:
         - name: rox_api_token
           value: $(params.stackrox-secret)
         - name: image
-          value: ''
+          value: image-registry.openshift-image-registry.svc:5000/quotes-backend-dev/quotes-backend
         - name: insecure-skip-tls-verify
           value: 'true'
         - name: image_digest
