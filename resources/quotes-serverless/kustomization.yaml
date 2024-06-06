@@ -6,8 +6,7 @@ resources:
 - 00_quotes-namespace.yaml
 - 00_serverless-namespace.yaml
 - 01_quotes-configmap.yaml
-- 02_serverless-serving.yaml
-- 03_quotes-serverless-backend.yaml
-- 04_quotes_frontend-deployment.yaml
-- 05_quotes-service.yaml
-- 06_quotes-route.yaml
+- 02_quotes-serverless-backend.yaml
+- 03_quotes_frontend-deployment.yaml
+- 04_quotes-service.yaml
+- 05_quotes-route.yaml
