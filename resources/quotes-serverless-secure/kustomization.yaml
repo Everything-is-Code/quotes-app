@@ -4,5 +4,4 @@ commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 resources:
 - 00_quotes-namespace.yaml
-- secure-pipeline
-- secure-pipeline-tasks
+
