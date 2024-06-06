@@ -4,7 +4,6 @@ commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 resources:
 - 00_quotes-namespace.yaml
-- 00_serverless-namespace.yaml
 - 01_quotes-configmap.yaml
 - 02_quotes-serverless-backend.yaml
 - 03_quotes_frontend-deployment.yaml
