@@ -3,14 +3,14 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "4"
-  name: rhtas
+  name: quotes-serverless-secure
   namespace: openshift-gitops
 spec:
   destination:
     server: https://kubernetes.default.svc
   project: quotes
   source:
-    path: resources/secure-pipeline-tasks
+    path: resources/quotes-serverless-secure
     repoURL: https://github.com/Everything-is-Code/quotes-app.git
     targetRevision: main
   syncPolicy:

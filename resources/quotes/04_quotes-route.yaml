@@ -20,7 +20,6 @@ spec:
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect
-    destinationCACertificate: ''
   port:
     targetPort: 8080
 ---
@@ -45,6 +44,5 @@ spec:
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect
-    destinationCACertificate: ''
   port:
     targetPort: 5173
