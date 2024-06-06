@@ -28,11 +28,11 @@ spec:
     server: https://kubernetes.default.svc
   project: openshift-operators
   sources:
-      - repoURL: https://github.com/Everything-is-Code/advance-cluster-management.git
-        targetRevision: HEAD
-        path: bootstrap
-        directory:
-          exclude: 'kustomization.yaml'
+      # - repoURL: https://github.com/Everything-is-Code/advance-cluster-management.git
+      #   targetRevision: HEAD
+      #   path: bootstrap
+      #   directory:
+      #     exclude: 'kustomization.yaml'
       - repoURL: https://github.com/Everything-is-Code/quay.git
         path: bootstrap
         directory:
