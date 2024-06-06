@@ -5,7 +5,6 @@ commonAnnotations:
 resources:
 - 00_quotes-namespace.yaml
 - 00_serverless-namespace.yaml
-- 01_serverless-operator.yaml
 - 01_quotes-configmap.yaml
 - 02_serverless-serving.yaml
 - 03_quotes-serverless-backend.yaml

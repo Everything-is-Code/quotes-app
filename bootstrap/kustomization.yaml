@@ -8,4 +8,4 @@ resources:
 - 02_quotes-app.yaml
 - 03_quotes-serverless.yaml
 - 04_rhtas.yaml
-- argocd
+#- argocd
