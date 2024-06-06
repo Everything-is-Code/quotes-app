@@ -4,7 +4,7 @@ kind: AppProject
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-  name: supply-chain-security
+  name: openshift-operators
   namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:
@@ -21,12 +21,12 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-  name: operators
+  name: openshift-operators
   namespace: openshift-gitops
 spec:
   destination:
     server: https://kubernetes.default.svc
-  project: supply-chain-security
+  project: openshift-operators
   sources:
       - repoURL: https://github.com/Everything-is-Code/advance-cluster-management.git
         targetRevision: HEAD
