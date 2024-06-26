@@ -124,3 +124,5 @@ configmap:
   environmentVariables:
     name: environment-variables
     backendURL: 
+
+wildcard_hostname: ""
