@@ -1,10 +1,27 @@
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+  name: default-admin
+  namespace: quotes
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: quotes
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: configmap-pre-hook
   namespace: {{ .Values.namespace }}
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   template:
     spec:
