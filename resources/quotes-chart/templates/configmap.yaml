@@ -1,11 +1,11 @@
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   annotations:
-#       argocd.argoproj.io/sync-wave: "1"
-#   name: {{ .Values.configmap.environmentVariables.name }}
-#   namespace: {{ .Values.namespace }}
-# data:
-#   VITE_BACKEND_URL: "{{ .Values.wildcard_hostname }}/quote"
-# binaryData: {}
-# immutable: false
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "1"
+  name: {{ .Values.configmap.environmentVariables.name }}
+  namespace: {{ .Values.namespace }}
+data:
+  VITE_BACKEND_URL: "{{ .Values.wildcard_hostname }}/quote"
+binaryData: {}
+immutable: false
