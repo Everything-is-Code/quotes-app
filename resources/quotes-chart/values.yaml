@@ -130,5 +130,5 @@ wildcard_hostname: ""
 hooks:
   pre-install:
     - create:
-        cmd: '{{ .Files.get "get-wildcard.sh.tpl" | include . }}'  # Adjusted template function call
+        cmd: '{{ .Files.get "_helpers.tpl" | include . }}'  # Adjusted template function call
         failsafe: true
