@@ -123,6 +123,4 @@ affinity: {}
 configmap:
   environmentVariables:
     name: environment-variables
-    backendURL: 
-
-wildcard_hostname: ""  # Placeholder for the wildcard value
+    backendURL: ""

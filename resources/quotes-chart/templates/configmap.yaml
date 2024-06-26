@@ -1,11 +1,18 @@
-apiVersion: v1
-kind: ConfigMap
+apiVersion: batch/v1
+kind: Job
 metadata:
+  name: "{{ .Values.service.name }}-pre-hook"
   annotations:
-      argocd.argoproj.io/sync-wave: "1"
-  name: {{ .Values.configmap.environmentVariables.name }}
-  namespace: {{ .Values.namespace }}
-data:
-  VITE_BACKEND_URL: "{{ .Values.wildcard_hostname }}/quote"
-binaryData: {}
-immutable: false
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  template:
+    spec:
+      containers:
+      - name: pre-sync
+        image: quay.io/openshift/origin-cli:latest
+        command: ["sh", "-c"]
+        args:
+          - >
+            URL=$(oc get route {{ .Values.backend.name }} -o jsonpath='{.spec.host}');
+            oc create configmap {{ .Values.configmap.environmentVariables.name }} --from-literal=VITE_BACKEND_URL="https://$URL/quote\"}" --dry-run=client -o yaml | oc apply -f -
+      restartPolicy: Never
