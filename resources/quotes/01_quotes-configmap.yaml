@@ -30,7 +30,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: configmap-pre-hook
-  namespace: {{ .Values.namespace }}
+  namespace: quotes
   annotations:
     argocd.argoproj.io/sync-wave: "5"
 spec:
@@ -42,6 +42,6 @@ spec:
         command: ["sh", "-c"]
         args:
           - >
-            URL=$(oc get route {{ .Values.backend.name }} -o jsonpath='{.spec.host}');
-            oc create configmap {{ .Values.configmap.environmentVariables.name }} --from-literal=VITE_BACKEND_URL="https://$URL/quote" --dry-run=client -o yaml | oc apply -f -
+            URL=$(oc get route quotes-backend -o jsonpath='{.spec.host}');
+            oc create configmap environment-variables --from-literal=VITE_BACKEND_URL="https://$URL/quote" --dry-run=client -o yaml | oc apply -f -
       restartPolicy: Never
