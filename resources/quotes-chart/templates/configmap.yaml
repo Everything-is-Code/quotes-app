@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Values.service.name }}-pre-hook"
+  name: configmap-pre-hook
   namespace: {{ .Values.namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "4"
