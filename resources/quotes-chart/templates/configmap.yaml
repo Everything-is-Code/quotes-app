@@ -6,6 +6,6 @@ metadata:
   name: {{ .Values.configmap.environmentVariables.name }}
   namespace: {{ .Values.namespace }}
 data:
-  VITE_BACKEND_URL: "{{ wildcard_hostname }}/quote"
+  VITE_BACKEND_URL: "{{ .Values.wildcard_hostname }}/quote"
 binaryData: {}
 immutable: false
