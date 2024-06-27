@@ -16,12 +16,12 @@ runtime:
 replicaCount: 1
 
 image:
-  frontend:
+  backend:
     repository: quay.io/ilago/quote-backend
     pullPolicy: Always
     # Overrides the image tag whose default is the chart appVersion.
     tag: latest
-  backend:
+  frontend:
     repository: quay.io/ilago/quote-frontend
     pullPolicy: Always
     tag: latest
