@@ -3,7 +3,7 @@ kind: Application
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
-  name: quotes-app
+  name: quotes-chart
   namespace: openshift-gitops
 spec:
   destination:
