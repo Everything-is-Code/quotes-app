@@ -14,8 +14,6 @@ metadata:
     app.kubernetes.io/name: quotes-backend-route
     app.kubernetes.io/part-of: quotes-demo
 spec:
-  finalizers:
-    - kubernetes
   to:
     kind: Service
     name: {{ .Values.backend.name }}
