@@ -32,5 +32,5 @@ spec:
         args:
           - >
             URL=$(oc get route {{ .Values.backend.name }} -n {{ .Values.namespace }} -o jsonpath='{.spec.host}');
-            oc create configmap {{ .Values.configmap.environmentVariables.name }} --from-literal=BACKEND_URL="https://$URL/quote" --dry-run=client -o yaml | oc apply -f -
+            oc create configmap {{ .Values.configmap.environmentVariables.name }} --from-literal=VITE_BACKEND_URL="https://$URL/quote" --dry-run=client -o yaml | oc apply -f -
       restartPolicy: Never
