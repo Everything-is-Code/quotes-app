@@ -31,11 +31,11 @@ spec:
         - name: {{ .Values.frontend.name }}
           image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag | default .Chart.AppVersion }}"
           env:
-            - name: {{ .Values.environmentVariables.variable }}
+            - name: {{ .Values.configmap.environmentVariables.variable }}
               valueFrom:
                 configMapKeyRef:
                   name: environment-variables
-                  key: {{ .Values.environmentVariables.variable }}
+                  key: {{ .Values.configmap.environmentVariables.variable }}
                   configmap:
           resources: {}
           terminationMessagePath: /dev/termination-log
