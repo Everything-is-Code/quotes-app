@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.frontend.name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag | default .Chart.AppVersion }}"
           env:
             - name: VITE_BACKEND_URL
               valueFrom:

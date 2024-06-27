@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.backend.name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.backend.repository }}:{{ .Values.image.backend.tag | default .Chart.AppVersion }}"
           ports:
             - containerPort: {{ .Values.service.backend.targetPort }}
               protocol: TCP
