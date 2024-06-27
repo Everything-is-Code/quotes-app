@@ -3,8 +3,10 @@
 # Declare variables to be passed into your templates.
 backend:
   name: quotes-backend
+  replicaCount: 1
 frontend:
   name: quotes-frontend
+  replicaCount: 1
 
 namespace: quotes-helm
 
@@ -13,7 +15,7 @@ runtime:
     version: 20.12.13
   backend:
     version: 3.9.4
-replicaCount: 1
+
 
 image:
   backend:

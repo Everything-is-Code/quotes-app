@@ -18,9 +18,7 @@ metadata:
   name: {{ .Values.frontend.name }}
   namespace: {{ .Values.namespace }}
 spec:
-  finalizers:
-    - kubernetes
-  replicas: 1
+  replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:
         app: {{ .Values.frontend.name }}

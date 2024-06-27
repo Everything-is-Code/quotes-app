@@ -14,8 +14,6 @@ metadata:
   name: {{ .Values.frontend.name }}
   namespace: {{ .Values.namespace }}
 spec:
-  finalizers:
-    - kubernetes
   selector:
     app: {{ .Values.frontend.name }}
   ports:
