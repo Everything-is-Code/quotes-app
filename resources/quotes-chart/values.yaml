@@ -6,7 +6,7 @@ backend:
 frontend:
   name: quotes-frontend
 
-namespace: quotes
+namespace: quotes-helm
 
 runtime:
   frontend:
