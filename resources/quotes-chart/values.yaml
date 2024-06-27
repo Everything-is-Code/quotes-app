@@ -26,7 +26,7 @@ image:
   frontend:
     repository: quay.io/ilago/quote-frontend
     pullPolicy: Always
-    tag: 20babcb732529bff63bd5c087fc5ff6aedfc6dc38a879520266cf05afe44a45e
+    tag: latest
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
