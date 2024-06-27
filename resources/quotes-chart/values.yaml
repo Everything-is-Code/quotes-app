@@ -133,3 +133,4 @@ configmap:
   environmentVariables:
     name: environment-variables
     backendURL: ""
+    variable: VITE_BACKEND_URL
