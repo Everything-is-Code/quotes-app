@@ -15,10 +15,12 @@ metadata:
     app.kubernetes.io/environment: development
     app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
     app.openshift.io/runtime: quarkus
-    app.openshift.io/runtime-version: "{{ .Values.runtimeVersion }}"
+    app.openshift.io/runtime-version: "{{ .Values.runtime.backend.version }}"
   namespace: {{ .Values.namespace }}
   name: {{ .Values.backend.name }}
 spec:
+  finalizers:
+    - kubernetes
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:

@@ -5,7 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "4"
   name: default-admin
-  namespace: quotes
+  namespace: {{ .Values.namespace }}
 subjects:
   - kind: ServiceAccount
     name: default

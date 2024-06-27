@@ -8,8 +8,11 @@ frontend:
 
 namespace: quotes
 
-runtimeVersion: 3.9.4
-
+runtime:
+  frontend:
+    version: 20.12.13
+  backend:
+    version: 3.9.4
 replicaCount: 1
 
 image:
