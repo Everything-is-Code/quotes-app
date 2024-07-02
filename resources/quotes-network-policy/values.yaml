@@ -8,7 +8,7 @@ frontend:
   name: quotes-frontend
   replicaCount: 1
 
-namespace: quotes-helm
+namespace: quotes-network-policy
 
 runtime:
   frontend:
