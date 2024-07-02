@@ -4,8 +4,7 @@ metadata:
   name: backend-network-policy
   namespace: quotes-network-policy
 spec:
-  podSelector: 
-    app: quotes-serverless-backend-00001
+  podSelector: {}
   policyTypes:
     - Ingress
     - Egress
