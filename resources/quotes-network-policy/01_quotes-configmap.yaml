@@ -31,6 +31,6 @@ spec:
         command: ["sh", "-c"]
         args:
           - >
-            URL=$(oc get route quotes-serverless-backend -n quotes-serverless -o jsonpath='{.spec.host}');
+            URL=$(oc get route quotes-serverless-backend -n quotes-network-policy -o jsonpath='{.spec.host}');
             oc create configmap environment-variables --from-literal=VITE_BACKEND_URL="https://$URL/quote" --dry-run=client -o yaml | oc apply -f -
       restartPolicy: Never
