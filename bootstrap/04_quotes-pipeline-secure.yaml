@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: quotes
   source:
-    path: resources/quotes-serverless-secure
+    path: resources/quotes-pipeline-secure
     repoURL: https://github.com/Everything-is-Code/quotes-app.git
     targetRevision: main
   syncPolicy:
