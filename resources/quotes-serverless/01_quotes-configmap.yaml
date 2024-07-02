@@ -3,7 +3,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/sync-wave: "5"
   name: default-admin
   namespace: quotes-serverless
 subjects:
@@ -21,7 +21,7 @@ metadata:
   name: configmap-pre-hook
   namespace: quotes-serverless
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   template:
     spec:
@@ -31,6 +31,6 @@ spec:
         command: ["sh", "-c"]
         args:
           - >
-            URL=$(oc get route quotes-serverless-backend -n quotes-serverless -o jsonpath='{.spec.host}');
-            oc create configmap environment-variables --from-literal=VITE_BACKEND_URL="https://$URL/quote" --dry-run=client -o yaml | oc apply -f -
-      restartPolicy: Never
+            URL=$(oc get route.serving.knative.dev/quotes-serverless -n quotes-network-policy -o jsonpath='{.status.url}');
+            oc create configmap environment-variables --from-literal=VITE_BACKEND_URL="$URL/quote" --dry-run=client -o yaml | oc apply -f -      
+        restartPolicy: Never
