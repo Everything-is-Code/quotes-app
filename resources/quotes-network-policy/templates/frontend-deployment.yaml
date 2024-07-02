@@ -2,44 +2,45 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   annotations:
-      argocd.argoproj.io/sync-wave: "2"
+      argocd.argoproj.io/sync-wave: "6"
       console.alpha.openshift.io/overview-app-route: ‘true’
   labels:
-    app: quotes-frontend
+    app: {{ .Values.frontend.name }}
     app.kubernetes.io/part-of: quotes-demo
-    app.kubernetes.io/name: quotes-frontend
+    app.kubernetes.io/name: {{ .Values.frontend.name }}
     app.kubernetes.io/component: frontend
     app.kubernetes.io/managed-by: argocd
     app.kubernetes.io/instance: quotes-aws-dev
     app.kubernetes.io/environment: development
-    app.kubernetes.io/version: "0.0.1"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
     app.openshift.io/runtime: nodejs
-    app.openshift.io/runtime-version: "20.12.13"
-  name: quotes-frontend
-  namespace: quotes
+    app.openshift.io/runtime-version: "{{ .Values.runtime.frontend.version }}"
+  name: {{ .Values.frontend.name }}
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:
-        app: quotes-frontend
+        app: {{ .Values.frontend.name }}
   template:
     metadata:
       labels:
-        app: quotes-frontend
+        app: {{ .Values.frontend.name }}
     spec:
       containers:
-        - name: quotes-frontend
-          image: 'quay.io/ilago/quote-frontend:main'
+        - name: {{ .Values.frontend.name }}
+          image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag | default .Chart.AppVersion }}"
           env:
-            - name: VITE_BACKEND_URL
+            - name: {{ .Values.configmap.environmentVariables.variable }}
               valueFrom:
                 configMapKeyRef:
                   name: environment-variables
-                  key: VITE_BACKEND_URL
+                  key: {{ .Values.configmap.environmentVariables.variable }}
+                  configmap:
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
