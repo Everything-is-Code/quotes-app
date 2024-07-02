@@ -1,0 +1,16 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: sonarqube
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    kubernetes.io/metadata.name: sonarqube
+    openshift-pipelines.tekton.dev/namespace-reconcile-version: 1.12.2
+    pod-security.kubernetes.io/audit: baseline
+    pod-security.kubernetes.io/audit-version: v1.24
+    pod-security.kubernetes.io/warn: baseline
+    pod-security.kubernetes.io/warn-version: v1.24
+spec:
+  finalizers:
+    - kubernetes
