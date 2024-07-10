@@ -1,36 +1,34 @@
----
-apiVersion: opentelemetry.io/v1beta1
+apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
   name: otel
   namespace: observability
 spec:
-  serviceAccount: otel-collector-sidecar
-  mode: sidecar
+  mode: deployment
   config: |
-    serviceAccount: otel-collector-sidecar
     receivers:
       otlp:
         protocols:
+          grpc:
+          http:
+      jaeger:
+        protocols:
           grpc: {}
-          http: {}
+          thrift_binary: {}
+          thrift_compact: {}
+          thrift_http: {}
+      zipkin: {}
     processors:
       batch: {}
       memory_limiter:
         check_interval: 1s
         limit_percentage: 50
         spike_limit_percentage: 30
-      resourcedetection:
-        detectors: [openshift]
-        timeout: 2s
     exporters:
-      otlp:
-        endpoint: "tempo-<example>-gateway:8090"
-        tls:
-          insecure: true
+      debug: {}
     service:
       pipelines:
         traces:
-          receivers: [jaeger]
-          processors: [memory_limiter, resourcedetection, batch]
-          exporters: [otlp]
+          receivers: [otlp,jaeger,zipkin]
+          processors: [memory_limiter,batch]
+          exporters: [debug]
