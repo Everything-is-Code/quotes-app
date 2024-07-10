@@ -30,7 +30,7 @@ spec:
       labels:
         app: {{ .Values.backend.name }}
     spec:
-      serviceAccount: otel-collector-sidecar
+#      serviceAccount: otel-collector-sidecar
       containers:
         - name: {{ .Values.backend.name }}
           image: "{{ .Values.image.backend.repository }}:{{ .Values.image.backend.tag | default .Chart.AppVersion }}"
