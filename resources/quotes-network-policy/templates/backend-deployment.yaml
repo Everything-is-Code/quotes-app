@@ -28,6 +28,7 @@ spec:
       labels:
         app: {{ .Values.backend.name }}
     spec:
+      serviceAccount: otel-collector-sidecar
       containers:
         - name: {{ .Values.backend.name }}
           image: "{{ .Values.image.backend.repository }}:{{ .Values.image.backend.tag | default .Chart.AppVersion }}"
@@ -44,7 +45,6 @@ spec:
       dnsPolicy: ClusterFirst
       securityContext: {}
       schedulerName: default-scheduler
-      serviceAccount: otel-collector-sidecar
   strategy:
     type: RollingUpdate
     rollingUpdate:
