@@ -58,11 +58,6 @@ spec:
         directory:
           exclude: 'kustomization.yaml'      
         targetRevision: HEAD
-      - repoURL: https://github.com/Everything-is-Code/quotes-app.git
-        path: resources/open-telemetry
-        directory:
-          exclude: 'kustomization.yaml'      
-        targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
