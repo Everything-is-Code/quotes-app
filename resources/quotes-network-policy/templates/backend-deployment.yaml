@@ -44,6 +44,7 @@ spec:
       dnsPolicy: ClusterFirst
       securityContext: {}
       schedulerName: default-scheduler
+      serviceAccount: otel-collector-sidecar
   strategy:
     type: RollingUpdate
     rollingUpdate:

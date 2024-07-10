@@ -3,8 +3,8 @@ kind: Kustomization
 commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 resources:
-- resources/quotes/kustomization.yaml
-- 00_opentracing-operator.yaml
-- 00_tempo-operator.yaml
-- 01_opentelemetry.yaml
-- 01_opentracing.yaml
+- 00_opentelemtry-operator.yaml
+- 01_opentelemetry-project.yaml
+- 02_opentelemetry-serviceaccount.yaml
+- 03_opentelemetry-roles.yaml
+- 04_opentelemetry-collector.yaml
