@@ -1,0 +1,15 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  labels:
+    kubernetes.io/metadata.name: openshift-tempo-operator
+    security.openshift.io/scc.podSecurityLabelSync: 'true'
+  annotations:
+      argocd.argoproj.io/sync-wave: "0"
+  name: openshift-tempo-operator
+spec:
+  finalizers:
+    - kubernetes
+
+
+    

@@ -7,12 +7,14 @@ spec:
     - name: OTEL_EXPORTER_OTLP_TIMEOUT
       value: "20"
   exporter:
-    endpoint: http://otel-collector-monitoring.observability.svc.cluster.local:4317
+    endpoint: http://otel-collector.observability.svc.cluster.local:4317
   propagators:
     - tracecontext
     - baggage
     - b3
+    - b3multi
     - jaeger
+    - ottrace
   sampler:
     type: parentbased_traceidratio
     argument: "0.25"

@@ -4,6 +4,8 @@ metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "1"
       console.alpha.openshift.io/overview-app-route: ‘true’
+      sidecar.opentelemetry.io/inject: "true"
+      instrumentation.opentelemetry.io/inject-java: "true"
   labels:
     app: quotes-backend
     app.kubernetes.io/part-of: quotes-demo
