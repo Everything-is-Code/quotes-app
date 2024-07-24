@@ -15,7 +15,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: otel-collector-sidecar
-  namespace: observability
+  namespace: quotes
 roleRef:
   kind: ClusterRole
   name: otel-collector

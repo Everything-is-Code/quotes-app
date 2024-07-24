@@ -26,6 +26,9 @@ spec:
     metadata:
       labels:
         app: quotes-frontend
+      annotations:
+        sidecar.opentelemetry.io/inject: "true"
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
         - name: quotes-frontend
