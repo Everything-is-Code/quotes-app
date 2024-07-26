@@ -7,8 +7,6 @@ metadata:
   name: dev
   namespace: {{ .Values.namespace }}
 spec:
-  serviceAccount: otel-collector-sidecar
-  mode: sidecar
   config: |
     extensions:
       bearertokenauth:
@@ -31,7 +29,7 @@ spec:
     exporters:
       logging:
       otlp:
-        endpoint: "tempo-simplest-gateway.observability.svc.cluster.local:8090"
+        endpoint: tempo-simplest-gateway.observability.svc.cluster.local:8090
         tls:
           insecure: false
           ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
