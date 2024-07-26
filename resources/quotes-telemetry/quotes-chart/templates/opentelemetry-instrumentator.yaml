@@ -10,7 +10,7 @@ spec:
     - name: OTEL_EXPORTER_OTLP_TIMEOUT
       value: "20"
   exporter:
-    endpoint: dev-collector:4317
+    endpoint: http://dev-collector:4317
   propagators:
     - tracecontext
     - baggage
