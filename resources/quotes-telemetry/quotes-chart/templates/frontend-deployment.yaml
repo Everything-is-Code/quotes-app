@@ -18,6 +18,7 @@ metadata:
   name: {{ .Values.frontend.name }}
   namespace: {{ .Values.namespace }}
 spec:
+  serviceAccount: otel-collector-sidecar
   replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:

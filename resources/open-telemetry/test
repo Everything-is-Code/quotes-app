@@ -9,6 +9,7 @@ spec:
   ttlSecondsAfterFinished: 30
   template:
     spec:
+      serviceAccount: otel-collector-sidecar
       restartPolicy: OnFailure
       containers:
       - name: telemetrygen
