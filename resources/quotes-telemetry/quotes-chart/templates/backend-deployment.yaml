@@ -29,7 +29,7 @@ spec:
         app: {{ .Values.backend.name }}
       annotations:
         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-        sidecar.opentelemetry.io/inject: 'true'
+        sidecar.opentelemetry.io/inject: 'dev-collector:4317'
     spec:
       serviceAccount: otel-collector-sidecar
       containers:
