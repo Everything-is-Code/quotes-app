@@ -10,9 +10,6 @@ spec:
   serviceAccount: otel-collector-sidecar
   mode: sidecar
   config: |
-    extensions:
-      bearertokenauth:
-        filename: "/var/run/secrets/kubernetes.io/serviceaccount/token"
 
     receivers:
       otlp:
