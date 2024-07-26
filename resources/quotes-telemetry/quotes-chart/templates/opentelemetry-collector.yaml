@@ -7,10 +7,8 @@ metadata:
   name: dev
   namespace: {{ .Values.namespace }}
 spec:
-  serviceAccount: otel-collector-sidecar
   mode: sidecar
   config: |
-    serviceAccount: otel-collector-sidecar
     receivers:
       jaeger:
         protocols:
