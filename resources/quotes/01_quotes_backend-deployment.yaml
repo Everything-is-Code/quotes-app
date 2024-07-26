@@ -1,39 +1,39 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   annotations:
-      argocd.argoproj.io/sync-wave: "1"
-      console.alpha.openshift.io/overview-app-route: ‘true’
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: '1'
+  name: quotes-backend
+  namespace: observability
   labels:
     app: quotes-backend
     app.kubernetes.io/part-of: quotes-demo
-    app.kubernetes.io/name: quotes-backend
-    app.kubernetes.io/component: backend
-    app.kubernetes.io/managed-by: argocd
     app.kubernetes.io/instance: quotes-aws-dev
     app.kubernetes.io/environment: development
-    app.kubernetes.io/version: "0.0.1"
+    app.kubernetes.io/version: 0.0.1
+    app.kubernetes.io/component: backend
     app.openshift.io/runtime: quarkus
-    app.openshift.io/runtime-version: "3.9.4"
-  namespace: quotes
-  name: quotes-backend
+    app.kubernetes.io/managed-by: argocd
+    app.kubernetes.io/name: quotes-backend
+    app.openshift.io/runtime-version: 3.9.4
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: quotes-backend
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: quotes-backend
       annotations:
-        sidecar.opentelemetry.io/inject: "true"
-        instrumentation.opentelemetry.io/inject-java: "true"
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+        sidecar.opentelemetry.io/inject: 'true'
     spec:
       containers:
         - name: quotes-backend
-          image: >-
-            quay.io/ilago/quote-backend:latest
+          image: 'quay.io/ilago/quote-backend:latest'
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -44,6 +44,8 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
+      serviceAccountName: otel-collector-sidecar
+      serviceAccount: otel-collector-sidecar
       securityContext: {}
       schedulerName: default-scheduler
   strategy:

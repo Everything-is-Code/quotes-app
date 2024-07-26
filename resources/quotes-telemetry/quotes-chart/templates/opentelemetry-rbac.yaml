@@ -2,6 +2,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "6"
   name: tempostack-traces-write
 rules:
   - apiGroups:
@@ -16,6 +18,8 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "6"
   name: tempostack-traces
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -24,4 +28,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: dev-collector
-    namespace: quotes-telemetry
+    namespace: {{ .Values.namespace }}

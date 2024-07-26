@@ -2,6 +2,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "3"
   name: otel-collector
 rules:
 - apiGroups: ["", "config.openshift.io"]
@@ -11,11 +13,13 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "3"
   name: otel-collector
 subjects:
 - kind: ServiceAccount
   name: otel-collector-sidecar
-  namespace: quotes-telemetry
+  namespace: {{ .Values.namespace }}
 roleRef:
   kind: ClusterRole
   name: otel-collector

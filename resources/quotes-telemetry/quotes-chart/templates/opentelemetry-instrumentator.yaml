@@ -1,6 +1,8 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "5"
   name: quotes-instrumentation
 spec:
   env:

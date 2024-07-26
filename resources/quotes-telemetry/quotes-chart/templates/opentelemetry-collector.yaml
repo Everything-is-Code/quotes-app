@@ -2,8 +2,10 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "4"
   name: dev
-  namespace: quotes-telemetry
+  namespace: {{ .Values.namespace }}
 spec:
   serviceAccount: otel-collector-sidecar
   mode: sidecar

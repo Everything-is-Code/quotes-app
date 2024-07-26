@@ -26,6 +26,9 @@ spec:
     metadata:
       labels:
         app: {{ .Values.frontend.name }}
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+        sidecar.opentelemetry.io/inject: 'true'
     spec:
       containers:
         - name: {{ .Values.frontend.name }}
