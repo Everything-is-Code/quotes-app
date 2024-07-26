@@ -4,6 +4,7 @@ metadata:
   annotations:
       argocd.argoproj.io/sync-wave: "5"
   name: quotes-instrumentation
+  namespace: {{ .Values.namespace }}
 spec:
   env:
     - name: OTEL_EXPORTER_OTLP_TIMEOUT
