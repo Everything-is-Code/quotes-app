@@ -9,37 +9,19 @@ metadata:
 spec:
   serviceAccount: otel-collector-sidecar
   mode: sidecar
-  config: |
-    serviceAccount: otel-collector-sidecar
+  config: 
     receivers:
-      otlp:
-        protocols:
-          grpc: {}
-          http: {}
       jaeger:
         protocols:
-          thrift_binary:
-          thrift_compact:
-          thrift_http:
-          grpc:
+          thrift_compact: {}
     processors:
-      batch: {}
-      memory_limiter:
-        check_interval: 1s
-        limit_percentage: 50
-        spike_limit_percentage: 30
-      resourcedetection:
-        detectors: [openshift]
-        timeout: 2s
+
     exporters:
-      otlp:
-        endpoint: "tempo-simplest-gateway.observability.svc.cluster.local:8090"
-        tls:
-          insecure: true
+      debug: {}
+
     service:
       pipelines:
         traces:
-          receivers: [otlp, jaeger]
-          processors: [memory_limiter, resourcedetection, batch]
-          exporters: [otlp]
+          receivers: [jaeger]
+          exporters: [debug]
 
