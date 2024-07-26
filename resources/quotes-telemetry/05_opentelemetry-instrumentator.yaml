@@ -1,13 +1,13 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
-  name: java-instrumentation
+  name: quotes-instrumentation
 spec:
   env:
     - name: OTEL_EXPORTER_OTLP_TIMEOUT
       value: "20"
   exporter:
-    endpoint: http://otel-collector.quotes.svc.cluster.local:4317
+    endpoint: http://otel-collector.quotes-telemetry.svc.cluster.local:4317
   propagators:
     - tracecontext
     - baggage

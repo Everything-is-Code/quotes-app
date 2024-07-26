@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "1"
+      console.alpha.openshift.io/overview-app-route: ‘true’
+  labels:
+    app: {{ .Values.backend.name }}
+    app.kubernetes.io/part-of: quotes-demo
+    app.kubernetes.io/name: {{ .Values.backend.name }}
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/managed-by: argocd
+    app.kubernetes.io/instance: quotes-aws-dev
+    app.kubernetes.io/environment: development
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.openshift.io/runtime: quarkus
+    app.openshift.io/runtime-version: "{{ .Values.runtime.backend.version }}"
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.backend.name }}
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.backend.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.backend.name }}
+    spec:
+      containers:
+        - name: {{ .Values.backend.name }}
+          image: "{{ .Values.image.backend.repository }}:{{ .Values.image.backend.tag | default .Chart.AppVersion }}"
+          ports:
+            - containerPort: {{ .Values.service.backend.targetPort }}
+              protocol: TCP
+              name: http
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
