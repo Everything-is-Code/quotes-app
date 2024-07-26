@@ -16,6 +16,12 @@ spec:
         protocols:
           grpc: {}
           http: {}
+      jaeger:
+        protocols:
+          thrift_binary:
+          thrift_compact:
+          thrift_http:
+          grpc:
     processors:
       batch: {}
       memory_limiter:
