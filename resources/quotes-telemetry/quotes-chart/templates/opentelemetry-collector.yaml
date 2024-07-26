@@ -9,7 +9,7 @@ metadata:
 spec:
   serviceAccount: otel-collector-sidecar
   mode: sidecar
-  config:
+  config: |
     receivers:
       jaeger:
         protocols:
