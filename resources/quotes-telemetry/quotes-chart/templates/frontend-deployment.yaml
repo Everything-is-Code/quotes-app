@@ -18,7 +18,6 @@ metadata:
   name: {{ .Values.frontend.name }}
   namespace: {{ .Values.namespace }}
 spec:
-  serviceAccount: otel-collector-sidecar
   replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:
@@ -31,6 +30,7 @@ spec:
         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
         sidecar.opentelemetry.io/inject: 'true'
     spec:
+      serviceAccount: otel-collector-sidecar
       containers:
         - name: {{ .Values.frontend.name }}
           image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag | default .Chart.AppVersion }}"
