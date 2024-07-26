@@ -7,8 +7,10 @@ metadata:
   name: dev
   namespace: {{ .Values.namespace }}
 spec:
+  serviceAccount: otel-collector-sidecar
   mode: sidecar
   config: |
+    serviceAccount: otel-collector-sidecar
     receivers:
       jaeger:
         protocols:
@@ -21,7 +23,12 @@ spec:
       otlp:
         endpoint: "tempo-simplest-gateway.observability.svc.cluster.local:8090"
         tls:
-          insecure: true
+          insecure: false
+          ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
+        auth:
+          authenticator: bearertokenauth
+        headers:
+          X-Scope-OrgID: "dev"
 
     service:
       pipelines:
