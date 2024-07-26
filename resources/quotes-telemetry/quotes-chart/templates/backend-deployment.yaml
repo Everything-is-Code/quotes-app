@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-      argocd.argoproj.io/sync-wave: "1"
+      argocd.argoproj.io/sync-wave: "7"
       console.alpha.openshift.io/overview-app-route: ‘true’
   labels:
     app: {{ .Values.backend.name }}
