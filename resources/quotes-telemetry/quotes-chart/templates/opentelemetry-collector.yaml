@@ -27,6 +27,9 @@ spec:
 
     exporters:
       logging:
+        verbosity: detailed
+        sampling_initial: 5
+        sampling_thereafter: 200
       otlp:
         endpoint: "tempo-simplest-gateway.observability.svc.cluster.local:8090"
         tls:
