@@ -8,21 +8,18 @@ spec:
   serviceAccount: otel-collector-sidecar
   mode: sidecar
   config: |
-    extensions:
-      bearertokenauth:
-        filename: "/var/run/secrets/kubernetes.io/serviceaccount/token"
 
     receivers:
-      otlp:
-        protocols:
-          grpc:
-          http:
       jaeger:
         protocols:
           thrift_binary:
           thrift_compact:
           thrift_http:
           grpc:
+      otlp:
+        protocols:
+          grpc:
+          http:
 
     processors:
 
@@ -39,8 +36,13 @@ spec:
           X-Scope-OrgID: "dev"
 
     service:
-      extensions: [bearertokenauth]
+      extensions: 
+        - bearertokenauth
       pipelines:
         traces:
-          receivers: [otlp, jaeger]
-          exporters: [otlp, logging]
+          receivers: 
+            - otlp
+            - jaeger
+          exporters: 
+            - otlp
+            - logging
