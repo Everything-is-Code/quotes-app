@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    app: "myapp"
+  annotations:
+    sidecar.opentelemetry.io/inject: "true"
+spec:
+  serviceAccount: otel-collector-sidecar
+  containers:
+  - name: myapp
+    image: jaegertracing/vertx-create-span:operator-e2e-tests
+    ports:
+      - containerPort: 8080
+        protocol: TCP
