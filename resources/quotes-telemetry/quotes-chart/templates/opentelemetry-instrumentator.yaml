@@ -11,6 +11,8 @@ spec:
       value: "20"
   exporter:
     endpoint: http://dev-collector.quotes-telemetry.svc.cluster.local:4317
+    tls:
+      insecure: true
   propagators:
     - tracecontext
     - baggage

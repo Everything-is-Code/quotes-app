@@ -28,8 +28,7 @@ spec:
         app: {{ .Values.frontend.name }}
       annotations:
         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-        sidecar.opentelemetry.io/inject: 'true'
-        instrumentation.opentelemetry.io/inject-java: "true"
+        instrumentation.opentelemetry.io/inject-nodejs: "true"
     spec:
       serviceAccount: otel-collector-sidecar
       containers:
