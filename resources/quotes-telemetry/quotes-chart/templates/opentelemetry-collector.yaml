@@ -27,17 +27,11 @@ spec:
         sampling_thereafter: 200
         verbosity: detailed
       otlp:
-        auth:
-          authenticator: bearertokenauth
         endpoint: tempo-simplest-gateway.observability.svc.cluster.local:8090
-        headers:
-          X-Scope-OrgID: dev
         tls:
           ca_file: /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
           insecure: false
     service:
-      extensions:
-        - bearertokenauth
       pipelines:
         traces:
           exporters:
