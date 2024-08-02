@@ -73,4 +73,6 @@ application.argoproj.io/quotes-telemetry created
 Now to check it is working we go to the following url
 
     
-https://tempo-simplest-gateway-observability.apps.cluster-mmdls.mmdls.sandbox1482.opentlc.com 
+https://tempo-simplest-gateway-observability.apps.$CLUSTER.com/api/traces/v1/dev/search
+
+(Note: For the apps to show up we need to make some traffic)
