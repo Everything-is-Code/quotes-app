@@ -35,4 +35,36 @@ application.argoproj.io/quotes-chart created
 ➜  quotes-app git:(main) ✗ oc apply -f bootstrap/03_quotes-serverless.yaml 
 application.argoproj.io/quotes-serverless created
 
+# 04 Installing the Network Policie DEMO
 
+➜  quotes-app git:(main) oc apply -f bootstrap/05_quotes-network-policy.yaml 
+application.argoproj.io/quotes-network-policy created
+
+# 05 Installing the Open Telemetry DEMO
+First we create the following:
+
+➜  quotes-app git:(main) ✗ oc apply -f resources/tempo/00_observability-namespace.yaml 
+project.project.openshift.io/observability created
+➜  quotes-app git:(main) ✗ oc apply -f resources/tempo/01_tempo-obc.yaml              
+objectbucketclaim.objectbucket.io/tempostack-dev-odf created
+
+Then we retrieve the values for:
+  bucket: #retrieve from the ObjectBucketClaim called tempostack-dev-odf
+  access_key_id: #retrieve from the noobaa/odf/aws secret
+  access_key_secret: #retrieve from the noobaa/odf/aws secret
+
+And fill the following file "02_tempo-odf-secret.yaml"
+
+Then we create the rest of the files:
+
+➜  quotes-app git:(main) ✗ oc create -f resources/tempo/02_tempo-odf-secret.yaml 
+secret/tempostack-dev-odf created
+➜  quotes-app git:(main) ✗ oc create -f resources/tempo/03_tempo-instance.yaml  
+tempostack.tempo.grafana.com/simplest created
+➜  quotes-app git:(main) ✗ oc create -f resources/tempo/04_tempo-rbac.yaml    
+clusterrole.rbac.authorization.k8s.io/tempostack-traces-reader created
+clusterrolebinding.rbac.authorization.k8s.io/tempostack-traces-reader created
+
+➜  quotes-app git:(main) ✗ oc apply -f bootstrap/06_quotes-telemetry.yaml 
+appproject.argoproj.io/quotes-telemetry created
+application.argoproj.io/quotes-telemetry created
