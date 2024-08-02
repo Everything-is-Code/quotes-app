@@ -33,4 +33,4 @@ spec:
           - >
             URL=$(oc get route.serving.knative.dev/quotes-serverless -n quotes-network-policy -o jsonpath='{.status.url}');
             oc create configmap environment-variables --from-literal=VITE_BACKEND_URL="$URL/quote" --dry-run=client -o yaml | oc apply -f -      
-        restartPolicy: Never
+      restartPolicy: Never
