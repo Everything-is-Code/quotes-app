@@ -58,6 +58,11 @@ spec:
         directory:
           exclude: 'kustomization.yaml'      
         targetRevision: HEAD
+      - repoURL: https://github.com/Everything-is-Code/red-hat-build-of-opentelemetry.git
+        path: bootstrap
+        directory:
+          exclude: 'kustomization.yaml'      
+        targetRevision: HEAD    
   syncPolicy:
     automated:
       prune: true
