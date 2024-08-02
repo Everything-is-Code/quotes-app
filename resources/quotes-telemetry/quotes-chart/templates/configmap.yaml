@@ -34,3 +34,4 @@ spec:
             URL=$(oc get route {{ .Values.backend.name }} -n {{ .Values.namespace }} -o jsonpath='{.spec.host}');
             oc create configmap {{ .Values.configmap.environmentVariables.name }} --from-literal={{ .Values.configmap.environmentVariables.variable }}="https://$URL/quote" --dry-run=client -o yaml | oc apply -f -
       restartPolicy: Never
+

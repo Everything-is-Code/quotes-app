@@ -69,3 +69,8 @@ clusterrolebinding.rbac.authorization.k8s.io/tempostack-traces-reader created
 ➜  quotes-app git:(main) ✗ oc apply -f bootstrap/06_quotes-telemetry.yaml 
 appproject.argoproj.io/quotes-telemetry created
 application.argoproj.io/quotes-telemetry created
+
+Now to check it is working we go to the following url
+
+    
+https://tempo-simplest-gateway-observability.apps.cluster-mmdls.mmdls.sandbox1482.opentlc.com 
