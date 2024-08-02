@@ -29,7 +29,6 @@ spec:
         app: quotes-backend
       annotations:
         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-        sidecar.opentelemetry.io/inject: 'true'
     spec:
       containers:
         - name: quotes-backend
@@ -44,8 +43,6 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
-      serviceAccountName: otel-collector-sidecar
-      serviceAccount: otel-collector-sidecar
       securityContext: {}
       schedulerName: default-scheduler
   strategy:
