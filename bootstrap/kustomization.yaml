@@ -6,6 +6,4 @@ resources:
 - 00_operators.yaml
 - 01_quotes-proj.yaml
 - 02_quotes-app.yaml
-- 03_quotes-serverless.yaml
-- 04_quotes-serverless-secure.yaml
-#- argocd
+

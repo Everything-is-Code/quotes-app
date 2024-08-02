@@ -25,6 +25,14 @@ appproject.argoproj.io/quotes created
 ➜  quotes-app git:(main) ✗ oc apply -f bootstrap/02_quotes-app.yaml
 application.argoproj.io/quotes-app created
 
-# 02 Installing the Serverless DEMO
+# 02 Installing the Helm Chart Example
+
+➜  quotes-app git:(main) ✗ oc apply -f bootstrap/03_quotes-chart.yaml           
+application.argoproj.io/quotes-chart created
+
+# 03 Installing the Serverless DEMO
+
+➜  quotes-app git:(main) ✗ oc apply -f bootstrap/03_quotes-serverless.yaml 
+application.argoproj.io/quotes-serverless created
 
 
