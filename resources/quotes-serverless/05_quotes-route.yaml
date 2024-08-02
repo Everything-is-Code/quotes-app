@@ -3,7 +3,7 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   annotations:
-      argocd.argoproj.io/sync-wave: "5"
+      argocd.argoproj.io/sync-wave: "3"
   name: quotes-backend
   namespace: quotes-serverless
   labels:
@@ -28,7 +28,7 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   annotations:
-      argocd.argoproj.io/sync-wave: "9"
+      argocd.argoproj.io/sync-wave: "6"
   name: quotes-frontend
   namespace: quotes-serverless
   labels:
