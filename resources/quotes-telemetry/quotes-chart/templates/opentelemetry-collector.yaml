@@ -7,37 +7,40 @@ metadata:
   name: dev
   namespace: {{ .Values.namespace }}
 spec:
-  serviceAccount: otel-collector-sidecar
-  mode: sidecar
   config: |
+    extensions:
+      bearertokenauth:
+        filename: "/var/run/secrets/kubernetes.io/serviceaccount/token"
+
     receivers:
-      jaeger:
-        protocols:
-          grpc: null
-          thrift_binary: null
-          thrift_compact: null
-          thrift_http: null
       otlp:
         protocols:
-          grpc: null
-          http: null
+          grpc:
+          http:
+      jaeger:
+        protocols:
+          thrift_binary:
+          thrift_compact:
+          thrift_http:
+          grpc:
+
+    processors:
+
     exporters:
       logging:
-        sampling_initial: 5
-        sampling_thereafter: 200
-        verbosity: detailed
       otlp:
         endpoint: tempo-simplest-gateway.observability.svc.cluster.local:8090
         tls:
-          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
           insecure: false
+          ca_file: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"
+        auth:
+          authenticator: bearertokenauth
+        headers:
+          X-Scope-OrgID: "dev"
+
     service:
+      extensions: [bearertokenauth]
       pipelines:
         traces:
-          exporters:
-            - otlp
-            - logging
-          processors: []
-          receivers:
-            - otlp
-            - jaeger
+          receivers: [otlp, jaeger]
+          exporters: [otlp, logging]
