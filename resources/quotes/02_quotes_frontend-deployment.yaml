@@ -38,7 +38,7 @@ spec:
                   key: VITE_BACKEND_URL
           volumeMounts:
           - name: config-volume
-            mountPath: /etc/
+            mountPath: /etc/config
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
