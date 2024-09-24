@@ -36,10 +36,17 @@ spec:
                 configMapKeyRef:
                   name: environment-variables
                   key: VITE_BACKEND_URL
+          volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent
+      volumes:
+      - name: config-volume
+        configMap:
+          name: environment-variables
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
