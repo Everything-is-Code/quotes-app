@@ -1,0 +1,27 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "5"
+  name: quotes-instrumentation
+  namespace: {{ .Values.namespace }}
+spec:
+  env:
+    - name: OTEL_EXPORTER_OTLP_TIMEOUT
+      value: "20"
+  exporter:
+    endpoint: http://dev-collector.observability.svc.cluster.local:4317
+  propagators:
+    - tracecontext
+    - baggage
+    - b3
+    - b3multi
+    - jaeger
+    - ottrace
+  sampler:
+    type: parentbased_traceidratio
+    argument: "0.25"
+  java:
+    env:
+    - name: OTEL_JAVAAGENT_DEBUG
+      value: "true"

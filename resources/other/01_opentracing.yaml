@@ -1,0 +1,7 @@
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "3"
+  name: my-jaeger
+spec: {}

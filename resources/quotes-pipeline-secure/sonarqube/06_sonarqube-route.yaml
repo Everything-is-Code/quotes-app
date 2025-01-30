@@ -1,0 +1,19 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+  name: sonarqube
+  namespace: sonarqube
+  labels:
+    app: sonarqube
+spec:
+  to:
+    kind: Service
+    name: sonarqube
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+    destinationCACertificate: ''
+  port:
+    targetPort: 9000-tcp

@@ -1,0 +1,124 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: '3'
+  resourceVersion: '75179'
+  name: sonarqube
+  namespace: sonarqube
+  labels:
+    app: sonarqube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarqube
+      deploymentconfig: sonarqube
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sonarqube
+        deploymentconfig: sonarqube
+    spec:
+      volumes:
+        - name: sonar-data
+          persistentVolumeClaim:
+            claimName: sonarqube-data
+      containers:
+        - resources:
+            requests:
+              cpu: 200m
+              memory: 1Gi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          name: sonarqube
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9000
+              scheme: HTTP
+            initialDelaySeconds: 45
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: JDBC_URL
+              value: 'jdbc:postgresql://sonardb:5432/sonar'
+            - name: JDBC_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: sonardb
+                  key: database-user
+            - name: JDBC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sonardb
+                  key: database-password
+            - name: FORCE_AUTHENTICATION
+              value: 'false'
+            - name: PROXY_HOST
+            - name: PROXY_PORT
+            - name: PROXY_USER
+            - name: PROXY_PASSWORD
+            - name: LDAP_URL
+              value: 'ldaps://idm.example.com:636'
+            - name: LDAP_REALM
+            - name: LDAP_AUTHENTICATION
+              value: simple
+            - name: LDAP_USER_BASEDN
+              value: 'cn=accounts,dc=example,dc=com'
+            - name: LDAP_USER_REAL_NAME_ATTR
+              value: displayname
+            - name: LDAP_USER_EMAIL_ATTR
+              value: mail
+            - name: LDAP_USER_REQUEST
+              value: '(&(objectClass=inetOrgPerson)(uid={login}))'
+            - name: LDAP_GROUP_BASEDN
+              value: 'cn=groups,cn=accounts,dc=example,dc=com'
+            - name: LDAP_GROUP_REQUEST
+              value: '(&(objectClass=groupOfUniqueNames)(uniqueMember={dn}))'
+            - name: LDAP_GROUP_ID_ATTR
+              value: cn
+            - name: LDAP_CONTEXTFACTORY
+              value: com.sun.jndi.ldap.LdapCtxFactory
+            - name: SONAR_AUTOCREATE_USERS
+              value: 'true'
+            - name: LDAP_BINDDN
+              valueFrom:
+                secretKeyRef:
+                  name: sonar-ldap-bind-dn
+                  key: username
+            - name: LDAP_BINDPASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: sonar-ldap-bind-dn
+                  key: password
+          ports:
+            - containerPort: 9000
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: sonar-data
+              mountPath: /opt/sonarqube/data
+          terminationMessagePolicy: File
+          image: docker.io/kenmoini/openshift-sonarqube
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

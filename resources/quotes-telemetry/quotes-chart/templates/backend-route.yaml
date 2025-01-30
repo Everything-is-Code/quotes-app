@@ -1,0 +1,24 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "9"
+  name: {{ .Values.backend.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/component: route
+    app.kubernetes.io/environment: development
+    app.kubernetes.io/instance: quotes-aws-dev
+    app.kubernetes.io/managed-by: argocd
+    app.kubernetes.io/name: quotes-backend-route
+    app.kubernetes.io/part-of: quotes-demo
+spec:
+  to:
+    kind: Service
+    name: {{ .Values.backend.name }}
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  port:
+    targetPort: {{ .Values.service.backend.targetPort }}

@@ -1,0 +1,43 @@
+---
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  annotations:
+      argocd.argoproj.io/sync-wave: "4"
+  name: dev
+  namespace: {{ .Values.namespace }}
+spec:
+  serviceAccount: otel-collector-sidecar
+  mode: sidecar
+  config: |
+    receivers:
+      jaeger:
+        protocols:
+          grpc: null
+          thrift_binary: null
+          thrift_compact: null
+          thrift_http: null
+      otlp:
+        protocols:
+          grpc: null
+          http: null
+    exporters:
+      logging:
+        sampling_initial: 5
+        sampling_thereafter: 200
+        verbosity: detailed
+      otlp:
+        endpoint: tempo-simplest-gateway.observability.svc.cluster.local:8090
+        tls:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
+          insecure: false
+    service:
+      pipelines:
+        traces:
+          exporters:
+            - otlp
+            - logging
+          processors: []
+          receivers:
+            - otlp
+            - jaeger

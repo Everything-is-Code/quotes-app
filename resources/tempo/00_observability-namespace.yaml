@@ -1,0 +1,14 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  labels:
+    kubernetes.io/metadata.name: observability
+  annotations:
+      argocd.argoproj.io/sync-wave: "0"
+  name: observability
+spec:
+  finalizers:
+    - kubernetes
+
+
+    
